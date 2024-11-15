@@ -18,6 +18,8 @@ services:
     depends_on:
       - db  # Ensure db service starts before app
 
+  # This is for Docker.db file(run database through Dockerfile.db and docker-compose.yml )
+
   db:
     build:
       context: ../backEnd/
