@@ -7,11 +7,13 @@ services:
       dockerfile: Dockerfile  # The name of your Dockerfile (change if necessary)
     image: my_stackoverflow_image
     container_name: my_stackoverflow_container  # Customize container name
+    restart: always
     ports:
       - "3000:5001"  # Maps host port 3000 to container port 3000
       - "4000:5001"  # Maps host port 3000 to container port 3000
     environment:
       - NODE_ENV=development  # Example environment variable
+      # - POSTGRES_URL= postgresql://'sabiha':'sabiha123'@postgres-db:5432/my_database
     # volumes:
     #   - ../backEnd:/app  # Mounts the current directory to /app in the container
     # Mount the current directory to the container
@@ -21,9 +23,10 @@ services:
   # This is for Docker.db file(run database through Dockerfile.db and docker-compose.yml )
 
   db:
-    build:
-      context: ../backEnd/
-      dockerfile: Dockerfile.db
+    # commented out the below's portion to run database container without using Dockerfile.db 
+    # build:
+    #   context: ../backEnd/
+    #   dockerfile: Dockerfile.db
     image: stackoverflow_postgres_db  # Example database (replace with another if needed)
     container_name: my_database_container
     ports:
